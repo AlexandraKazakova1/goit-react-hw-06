@@ -23,9 +23,7 @@ a:hover {
 } */
 
 body {
-  margin: 5px;
-  display: flex;
-  place-items: start;
+  background-color: #c2dff7;
 }
 
 /* h1 {
