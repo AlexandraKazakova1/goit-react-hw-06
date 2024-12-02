@@ -1,4 +1,4 @@
-.wrapper {
+/* .wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,7 +7,7 @@
   width: 300px;
   padding: 15px;
   border-radius: 5px;
-}
+} */
 
 .form {
   display: flex;

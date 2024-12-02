@@ -1,27 +1,17 @@
-// src/redux/filtersSlice.js
-
 import { createSlice } from "@reduxjs/toolkit";
 
-// Перенесли екшени пов'язані із завданнями у файл слайса
-export const setStatusFilter = createSlice("name/setStatusFilter");
-
-// Початковий стан слайса
-const initialState = {
-  filters: {
-    name: "",
+const filtersSlice = createSlice({
+  name: "filters",
+  initialState: { name: "" },
+  reducers: {
+    changeFilter: (state, action) => {
+      state.name = action.payload;
+    },
   },
-};
+});
 
-// Експортуємо редюсер слайса
-export default function changeFilter(state = initialState, action) {
-  switch (action.type) {
-    case "name/setStatusFilter":
-      return {
-        ...state,
-        status: action.payload,
-      };
+export const { changeFilter } = filtersSlice.actions;
 
-    default:
-      return state;
-  }
-}
+export const selectNameFilter = (state) => state.filters.name;
+
+export default filtersSlice.reducer;

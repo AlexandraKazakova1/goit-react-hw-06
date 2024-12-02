@@ -1,52 +1,42 @@
-// src/components/ContactForm/ContactForm.jsx
-import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import s from "./ContactForm.module.css";
-const ContactForm = ({ onAddContact }) => {
-  const validationSchema = Yup.object({
-    name: Yup.string()
-      .required("Required")
-      .min(3, "Min 3 characters")
-      .max(50, "Max 50 characters"),
-    number: Yup.string()
-      .required("Required")
-      .min(3, "Min 3 characters")
-      .max(50, "Max 50 characters"),
-  });
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addContact, selectContacts } from "../../redux/contactsSlice";
+import s from "./ContactsForm.module.css";
+
+const ContactsForm = () => {
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
+  const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (contacts.find((contact) => contact.name === name)) {
+      alert(`${name} is already in contacts`);
+      return;
+    }
+    dispatch(addContact({ id: Date.now().toString(), name, number }));
+    setName("");
+    setNumber("");
+  };
 
   return (
-    <div className={s.wrapper}>
-      <Formik
-        initialValues={{ name: "", number: "" }}
-        validationSchema={validationSchema}
-        onSubmit={(values, { resetForm }) => {
-          onAddContact(values.name, values.number);
-          resetForm();
-        }}
-      >
-        <Form className={s.form}>
-          <div>
-            <label htmlFor="name" className={s.label}>
-              Name
-            </label>
-            <Field type="text" name="name" className={s.input} />
-            <ErrorMessage name="name" component="div" className={s.error} />
-          </div>
-          <div>
-            <label htmlFor="number" className={s.label}>
-              Number
-            </label>
-            <Field type="text" name="number" className={s.input} />
-            <ErrorMessage name="number" component="div" className={s.error} />
-          </div>
-          <button type="submit" className={s.btn}>
-            Add Contact
-          </button>
-        </Form>
-      </Formik>
-    </div>
+    <form className={s.form} onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Name"
+      />
+      <input
+        type="tel"
+        value={number}
+        onChange={(e) => setNumber(e.target.value)}
+        placeholder="Number"
+      />
+      <button type="submit">Add Contact</button>
+    </form>
   );
 };
 
-export default ContactForm;
+export default ContactsForm;
