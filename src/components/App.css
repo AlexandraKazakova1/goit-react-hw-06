@@ -1,10 +1,13 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+  background-color: #c2dff7;
+  padding: 2em;
 }
-
+h1 {
+  color: rgb(31, 31, 119);
+}
 /* .logo {
   height: 6em;
   padding: 1.5em;

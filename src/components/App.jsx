@@ -1,7 +1,7 @@
 import "./App.css";
-import { SearchBox } from "./SearchBox/SearchBox";
-import { ContactList } from "./ContactList/ContactList";
-import { ContactForm } from "./ContactForm/ContactForm";
+import SearchBox from "./SearchBox/SearchBox";
+import ContactList from "./ContactList/ContactList";
+import ContactForm from "./ContactForm/ContactForm";
 
 export const App = () => {
   return (

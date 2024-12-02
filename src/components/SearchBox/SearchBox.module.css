@@ -1,18 +1,17 @@
-/* .wrapper {
+.wrapper {
   display: flex;
-} */
+  justify-content: center;
+}
 .label {
   display: flex;
   flex-direction: column;
-  justify-content: left;
   align-items: start;
   gap: 10px;
   font-size: bold;
   font-weight: bold;
   text-align: left;
   margin-bottom: 30px;
-}
-.label {
+  color: rgb(31, 31, 119);
 }
 
 .input {
