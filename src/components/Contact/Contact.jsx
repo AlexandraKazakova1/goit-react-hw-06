@@ -4,10 +4,10 @@ import { deleteContact } from "../../redux/contactsSlice";
 
 const Contact = ({ id, name, number }) => {
   const dispatch = useDispatch();
-
   const handleDelete = () => {
     dispatch(deleteContact(id));
   };
+
   return (
     <div className={s.contact_container}>
       <div className={s.contact_container_text}>
